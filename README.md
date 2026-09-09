@@ -1,29 +1,44 @@
 # semgrep-grok-bot
 
-Grok Bot template: **Semgrep Security Scanner** — scan code for security issues with Semgrep and share via Grok Bot team templates ([marketplace](https://x.ai/bot/marketplace)).
+**Semgrep Security Scanner** — a Grok Bot that scans code with Semgrep, triages findings, and helps fix them.
 
-## What it does
+Share via Grok Bot team templates. Public listing: [x.ai/bot/marketplace](https://x.ai/bot/marketplace) (requires public-template enablement).
 
-- Runs Semgrep (CLI or Semgrep connector) on a path, repo, PR, or pasted files
-- Ranks findings by severity with file/line evidence
-- Redacts secrets in reports
-- Offers triage / fix follow-ups (no push without an explicit ask)
+## Skills
 
-## Bot package
-
-Marketplace/team share is a Grok Bot template:
-
-| Piece | Role |
+| Skill | When |
 | --- | --- |
-| Profile | Storefront name + short description |
-| Skill | `semgrep-security-scan` — how to run and report a scan |
-| Plugin | Semgrep (`764`) — MCP + setup skill |
-| Memory | Scan conventions (ruleset defaults, no invented findings) |
+| Getting started Semgrep Scanner | First run / how to use |
+| Semgrep security scan | Scan a path, repo, or pasted files |
+| Scan a pull request | PR URL or `owner/repo#n` |
+| Triage Semgrep findings | Prioritize / false positives |
+| Fix Semgrep findings | Remediate (cloud agent preferred) |
+| Explain a Semgrep rule | Rule id meaning + safe fix |
 
-## Local setup on this machine
+## Memories (conventions)
 
-Semgrep CLI is expected on PATH (`semgrep`). Optional: add the Semgrep Grok Bot / Cursor connector for MCP scanning.
+- Severity counts first; findings as `path:line` + rule id; never invent CVEs
+- Default rulesets: `p/security-audit` or `p/owasp-top-ten`
+- Prefer fix over `nosemgrep`; justify suppressions
+- No GitHub comments / pushes / PRs unless explicitly asked
+- Concise engineering tone
 
-## Status
+## Routines
 
-Built for team template sharing first. Public marketplace publish depends on account enablement.
+| Routine | Trigger |
+| --- | --- |
+| PR Semgrep scan — semgrep-grok-bot | `pr-opened` / `pr-pushed` on this repo |
+| Weekday Semgrep ready-check | Weekdays 9:00 AM PT — alert only if Semgrep is broken |
+
+## Integrations
+
+- **Semgrep** (marketplace plugin `764`) — MCP + setup skill; CLI fallback
+- **GitHub** — PR metadata / changed files for PR scans (add the GitHub connector)
+
+## Local
+
+```bash
+git clone https://github.com/semgrep/semgrep-grok-bot.git
+# Semgrep CLI optional if using the connector
+semgrep --version
+```
