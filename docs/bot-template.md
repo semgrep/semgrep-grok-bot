@@ -1,27 +1,29 @@
 # Semgrep Security Scanner — template recipe
 
-## Profile (storefront)
+## Profile
 
 - **Name:** Semgrep Security Scanner
-- **Description:** Scans your code for security issues with Semgrep. Point it at a path, repo, PR, or pasted files and get severity-ranked findings with file/line evidence — no invented CVEs.
+- **Description:** Scans code for security issues with Semgrep, then helps triage and fix findings. Works from a path, repo, PR, or pasted files.
 
 ## Skills to pack
 
-### semgrep-security-scan
+1. getting-started-semgrep-scanner
+2. semgrep-security-scan
+3. scan-a-pull-request
+4. triage-semgrep-findings
+5. fix-semgrep-findings
+6. explain-a-semgrep-rule
 
-Use when the user wants Semgrep SAST on code they name. Prefer the Semgrep connector when installed; otherwise `semgrep` CLI. Default rulesets: `p/security-audit` or `p/owasp-top-ten`. Report counts, top findings, redact secrets, never invent findings.
+## Routines to pack
+
+1. pr-semgrep-scan-semgrep-grok-bot — GitHub PR opened/pushed on semgrep/semgrep-grok-bot
+2. weekday-semgrep-ready-check — weekdays 9am ready-check (quiet if healthy)
 
 ## Plugins
 
-- Semgrep marketplace plugin id `764`
+- Semgrep `764`
+- GitHub `48677658` (when installed)
 
-## Memory conventions
+## Getting started skill
 
-- Prefer Semgrep tool output over speculation; never invent findings or CVEs.
-- Default to security-oriented community rulesets unless the user specifies another config.
-- Redact secrets and tokens in chat reports.
-- Do not push, force-push, or open PRs unless the user explicitly asks.
-
-## Visibility
-
-Team templates only unless the account is enabled for public marketplace.
+`getting-started-semgrep-scanner`
